@@ -1,0 +1,33 @@
+:root {
+    --link-water: #CDD9F3;
+    --curious-blue: #3592E3;
+    --cloud-burst: #222C4C;
+}
+
+body {
+    background-color: var(--link-water);
+    color: var(--cloud-burst);
+}
+
+h1 {
+    background-color: var(--curious-blue);
+    color: var(--link-water);
+    text-align: center;
+    padding: 10px 0px;
+}
+
+/* TODO: not working */
+button {
+    color: var(--link-water);
+    background-color: var(--curious-blue);
+}
+
+#today {
+    color: var(--cloud-burst);
+    background-color: var(--link-water);
+}
+
+#forecast .card {
+    color: var(--link-water);
+    background-color: var(--cloud-burst);
+}
