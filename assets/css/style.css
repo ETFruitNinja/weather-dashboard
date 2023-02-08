@@ -14,6 +14,7 @@ h1 {
     color: var(--link-water);
     text-align: center;
     padding: 10px 0px;
+    margin: 0px;
 }
 
 /* TODO: not working */
@@ -30,4 +31,5 @@ button {
 #forecast .card {
     color: var(--link-water);
     background-color: var(--cloud-burst);
+    margin: 15px;
 }
