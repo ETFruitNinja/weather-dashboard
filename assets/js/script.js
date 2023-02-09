@@ -56,6 +56,13 @@ function convertCoordinatesToForecast(latitude, longitude) {
         })
         .then(function (data) {
             console.log(data);
+            // updates forecast cards based on forecasted weather data for the next 5 days
+            for (var i = 1; i < data.list.length / 8 + 1; i++) {
+                forecastCards.getElementsByClassName("card-date")[i - 1].innerHTML = dayjs.unix(data.list[i * 8 - 1].dt).format("MM/DD/YYYY");
+                forecastCards.getElementsByClassName("temperature")[i - 1].innerHTML = "Temperature: " + data.list[i * 8 - 1].main.temp + "\u00B0F";
+                forecastCards.getElementsByClassName("wind")[i - 1].innerHTML = "Wind: " + data.list[i * 8 - 1].wind.speed + " MPH";
+                forecastCards.getElementsByClassName("humidity")[i - 1].innerHTML = "Humidity: " + data.list[i * 8 - 1].main.humidity + "%";
+            }
         })
 }
 
