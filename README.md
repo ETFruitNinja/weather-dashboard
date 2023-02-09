@@ -4,16 +4,12 @@
 
 [TODO]
 
-## Installation
-
-N/A
-
 ## Usage
 
 [TODO]
 
 ## Link to deployed Application
-[TODO]
+https://etfruitninja.github.io/weather-dashboard/
 
 ## Screenshot
 ![alt=TODO](insert link here)
@@ -21,7 +17,3 @@ N/A
 ## Credits
 
 The creation of this website was guided by the UW Coding Bootcamp.
-
-## License
-
-N/A
