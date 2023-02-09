@@ -6,6 +6,11 @@ var searchHistoryElement = document.getElementById("search-history");
 
 var searchHistory = localStorage.getItem("history");
 searchHistory = JSON.parse(searchHistory) || [];
+for (var previousCity = 0; previousCity < searchHistory.length; previousCity++) {
+    var previousCityBtn = document.createElement("button");
+    searchHistoryElement.append(previousCityBtn);
+    previousCityBtn.textContent = searchHistory[previousCity];
+}
 
 function getWeatherData(event) {
     // prevents page from refreshing
@@ -51,8 +56,13 @@ function convertCoordinatesToForecast(latitude, longitude) {
             // store the city in the search history (local storage)
             // searchHistory = localStorage.getItem("history");
             // searchHistory = JSON.parse(searchHistory) || [];
-            searchHistory.push(data.name);
-            localStorage.setItem("history", JSON.stringify(searchHistory));
+            if (!searchHistory.includes(data.name)) {
+                searchHistory.push(data.name);
+                localStorage.setItem("history", JSON.stringify(searchHistory));
+                var previousCityBtn = document.createElement("button");
+                searchHistoryElement.append(previousCityBtn);
+                previousCityBtn.textContent = data.name;
+            }
             // to clear local storage while testing:
             // localStorage.setItem("history", JSON.stringify([]));
         })
