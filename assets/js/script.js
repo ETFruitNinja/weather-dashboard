@@ -48,6 +48,7 @@ function convertCoordinatesToForecast(latitude, longitude) {
             console.log(data);
             // updates current weather card based on current weather data
             todayCard.getElementsByClassName("card-title")[0].innerHTML = data.name + " (" + dayjs.unix(data.dt).format("MM/DD/YYYY") + ")";
+            todayCard.getElementsByClassName("icon")[0].setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
             todayCard.getElementsByClassName("temperature")[0].innerHTML = "Temperature: " + data.main.temp + "\u00B0F";
             todayCard.getElementsByClassName("wind")[0].innerHTML = "Wind: " + data.wind.speed + " MPH";
             todayCard.getElementsByClassName("humidity")[0].innerHTML = "Humidity: " + data.main.humidity + "%";
@@ -74,6 +75,7 @@ function convertCoordinatesToForecast(latitude, longitude) {
             // updates forecast cards based on forecasted weather data for the next 5 days
             for (var i = 1; i < data.list.length / 8 + 1; i++) {
                 forecastCards.getElementsByClassName("card-date")[i - 1].innerHTML = dayjs.unix(data.list[i * 8 - 1].dt).format("MM/DD/YYYY");
+                forecastCards.getElementsByClassName("icon")[i - 1].setAttribute("src", "http://openweathermap.org/img/wn/" + data.list[i * 8 - 1].weather[0].icon + ".png");
                 forecastCards.getElementsByClassName("temperature")[i - 1].innerHTML = "Temperature: " + data.list[i * 8 - 1].main.temp + "\u00B0F";
                 forecastCards.getElementsByClassName("wind")[i - 1].innerHTML = "Wind: " + data.list[i * 8 - 1].wind.speed + " MPH";
                 forecastCards.getElementsByClassName("humidity")[i - 1].innerHTML = "Humidity: " + data.list[i * 8 - 1].main.humidity + "%";
