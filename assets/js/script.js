@@ -2,15 +2,15 @@ var searchBtn = document.getElementById("search-btn");
 var searchBar = document.getElementById("search-bar");
 var todayCard = document.getElementById("today");
 var forecastCards = document.getElementById("forecast");
-var day1Card = document.getElementById("day1");
-var day2Card = document.getElementById("day2");
-var day3Card = document.getElementById("day3");
-var day4Card = document.getElementById("day4");
-var day5Card = document.getElementById("day5");
+var searchHistoryElement = document.getElementById("search-history");
+
+var searchHistory = localStorage.getItem("history");
+searchHistory = JSON.parse(searchHistory) || [];
 
 function getWeatherData(event) {
     // prevents page from refreshing
     event.preventDefault();
+    // store the searched city in a variable
     var city = searchBar.value;
 
     // requesting coordinates from the searched city
@@ -47,6 +47,14 @@ function convertCoordinatesToForecast(latitude, longitude) {
             todayCard.getElementsByClassName("temperature")[0].innerHTML = "Temperature: " + data.main.temp + "\u00B0F";
             todayCard.getElementsByClassName("wind")[0].innerHTML = "Wind: " + data.wind.speed + " MPH";
             todayCard.getElementsByClassName("humidity")[0].innerHTML = "Humidity: " + data.main.humidity + "%";
+
+            // store the city in the search history (local storage)
+            // searchHistory = localStorage.getItem("history");
+            // searchHistory = JSON.parse(searchHistory) || [];
+            searchHistory.push(data.name);
+            localStorage.setItem("history", JSON.stringify(searchHistory));
+            // to clear local storage while testing:
+            // localStorage.setItem("history", JSON.stringify([]));
         })
 
     // fetch request to get forecast data
