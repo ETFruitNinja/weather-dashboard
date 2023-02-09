@@ -4,6 +4,7 @@ var todayCard = document.getElementById("today");
 var forecastCards = document.getElementById("forecast");
 var searchHistoryElement = document.getElementById("search-history");
 
+// initializing search history
 var searchHistory = localStorage.getItem("history");
 searchHistory = JSON.parse(searchHistory) || [];
 for (var previousCity = 0; previousCity < searchHistory.length; previousCity++) {
@@ -12,11 +13,9 @@ for (var previousCity = 0; previousCity < searchHistory.length; previousCity++) 
     previousCityBtn.textContent = searchHistory[previousCity];
 }
 
-function getWeatherData(event) {
+function getWeatherData(event, city) {
     // prevents page from refreshing
     event.preventDefault();
-    // store the searched city in a variable
-    var city = searchBar.value;
 
     // requesting coordinates from the searched city
     var requestCoordinates = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=8ec6c4af786e285879d4dc34ae0bacd2";
@@ -54,8 +53,6 @@ function convertCoordinatesToForecast(latitude, longitude) {
             todayCard.getElementsByClassName("humidity")[0].innerHTML = "Humidity: " + data.main.humidity + "%";
 
             // store the city in the search history (local storage)
-            // searchHistory = localStorage.getItem("history");
-            // searchHistory = JSON.parse(searchHistory) || [];
             if (!searchHistory.includes(data.name)) {
                 searchHistory.push(data.name);
                 localStorage.setItem("history", JSON.stringify(searchHistory));
@@ -84,8 +81,13 @@ function convertCoordinatesToForecast(latitude, longitude) {
         })
 }
 
+// event listener for search button
 searchBtn.addEventListener("click", function(event) {
-    getWeatherData(event);
+    getWeatherData(event, searchBar.value);
 });
 
+//event listener for history buttons
+searchHistoryElement.addEventListener("click", function(event) {
+    getWeatherData(event, event.target.textContent);
+})
 // clicking cities from search history: based on target (event.target)
