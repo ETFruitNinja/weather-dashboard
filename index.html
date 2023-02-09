@@ -7,6 +7,13 @@
     <title>Weather Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- link to DayJS library -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
 </head>
 <body>
     <!-- website title banner -->
@@ -30,18 +37,17 @@
         <!-- card with current city, (date), weather symbol, temp, wind, humidity -->
         <div class="card" id="today" style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">Seattle (2/5/2023)</h5>
-            <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-            <p class="card-text">Temperature:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
+                <h5 class="card-title"></h5>
+                <p class="temperature"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
             </div>
         </div>
         <!-- "5-Day Forecast" + 5 cards with date, weather symbol, temp, wind, humidity -->
         <div id="forecast">
             <h4>5 Day Forecast</h4>
             <!-- Forecast Day 1 -->
-            <div class="card" id="today" style="width: 18rem;">
+            <div class="card" id="day-1" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">2/6/2023</h5>
                 <!-- need icon -->
@@ -52,7 +58,7 @@
             </div>
 
             <!-- Forecast Day 2 -->
-            <div class="card" id="today" style="width: 18rem;">
+            <div class="card" id="day-2" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">2/7/2023</h5>
                 <!-- need icon -->
@@ -63,7 +69,7 @@
             </div>
 
             <!-- Forecast Day 3 -->
-            <div class="card" id="today" style="width: 18rem;">
+            <div class="card" id="day-3" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">2/8/2023</h5>
                 <!-- need icon -->
@@ -74,7 +80,7 @@
             </div>
 
             <!-- Forecast Day 4 -->
-            <div class="card" id="today" style="width: 18rem;">
+            <div class="card" id="day-4" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">2/9/2023</h5>
                 <!-- need icon -->
@@ -85,7 +91,7 @@
             </div>
 
             <!-- Forecast Day 5 -->
-            <div class="card" id="today" style="width: 18rem;">
+            <div class="card" id="day-5" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">2/10/2023</h5>
                 <!-- need icon -->

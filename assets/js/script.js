@@ -1,5 +1,12 @@
 var searchBtn = document.getElementById("search-btn");
 var searchBar = document.getElementById("search-bar");
+var todayCard = document.getElementById("today");
+var forecastCards = document.getElementById("forecast");
+var day1Card = document.getElementById("day1");
+var day2Card = document.getElementById("day2");
+var day3Card = document.getElementById("day3");
+var day4Card = document.getElementById("day4");
+var day5Card = document.getElementById("day5");
 
 function getWeatherData(event) {
     // prevents page from refreshing
@@ -23,8 +30,24 @@ function getWeatherData(event) {
 }
 
 function convertCoordinatesToForecast(latitude, longitude) {
+    // requesting current weather data from the searche dcity based on retrieved coordinates
+    var requestCurrentWeatherData = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude +  "&lon=" + longitude + "&appid=8ec6c4af786e285879d4dc34ae0bacd2&units=imperial";
     // requesting 5-day forecast from the searched city based on retrived coordinates
-    var requestForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=8ec6c4af786e285879d4dc34ae0bacd2";
+    var requestForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=8ec6c4af786e285879d4dc34ae0bacd2&units=imperial";
+
+    // fetch request to get today's weather data
+    fetch(requestCurrentWeatherData)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            // updates current weather card based on current weather data
+            todayCard.getElementsByClassName("card-title")[0].innerHTML = data.name + " (" + dayjs.unix(data.dt).format("MM/DD/YYYY") + ")";
+            todayCard.getElementsByClassName("temperature")[0].innerHTML = "Temperature: " + data.main.temp + "\u00B0F";
+            todayCard.getElementsByClassName("wind")[0].innerHTML = "Wind: " + data.wind.speed + " MPH";
+            todayCard.getElementsByClassName("humidity")[0].innerHTML = "Humidity: " + data.main.humidity + "%";
+        })
 
     // fetch request to get forecast data
     fetch(requestForecast)
