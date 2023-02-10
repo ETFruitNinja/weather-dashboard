@@ -9,6 +9,7 @@ var searchHistory = localStorage.getItem("history");
 searchHistory = JSON.parse(searchHistory) || [];
 for (var previousCity = 0; previousCity < searchHistory.length; previousCity++) {
     var previousCityBtn = document.createElement("button");
+    previousCityBtn.setAttribute("class", "btn btn-primary");
     searchHistoryElement.append(previousCityBtn);
     previousCityBtn.textContent = searchHistory[previousCity];
 }
@@ -58,6 +59,7 @@ function convertCoordinatesToForecast(latitude, longitude) {
                 searchHistory.push(data.name);
                 localStorage.setItem("history", JSON.stringify(searchHistory));
                 var previousCityBtn = document.createElement("button");
+                previousCityBtn.setAttribute("class", "btn btn-primary");
                 searchHistoryElement.append(previousCityBtn);
                 previousCityBtn.textContent = data.name;
             }
@@ -92,4 +94,3 @@ searchBtn.addEventListener("click", function(event) {
 searchHistoryElement.addEventListener("click", function(event) {
     getWeatherData(event, event.target.textContent);
 })
-// clicking cities from search history: based on target (event.target)
